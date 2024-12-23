@@ -2,6 +2,7 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const sequelize = require('./util/database');
 
 const errorController = require('./controllers/error');
 
@@ -20,5 +21,14 @@ app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
+
+sequelize
+  .sync()
+  .then((res) => {
+    console.log("Database seted up")
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.listen(3000);
