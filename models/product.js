@@ -5,24 +5,24 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
   title: {
     type: String,
-    required: true,
+    required: true
   },
   price: {
     type: Number,
-    required: true,
+    required: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   imageUrl: {
     type: String,
-    required: true,
+    required: true
   },
-  userId:{
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required:true
+    required: true
   }
 });
 
@@ -30,7 +30,6 @@ module.exports = mongoose.model('Product', productSchema);
 
 // const mongodb = require('mongodb');
 // const getDb = require('../util/database').getDb;
-// const User = require('../models/user');
 
 // class Product {
 //   constructor(title, price, description, imageUrl, id, userId) {
@@ -54,10 +53,10 @@ module.exports = mongoose.model('Product', productSchema);
 //       dbOp = db.collection('products').insertOne(this);
 //     }
 //     return dbOp
-//       .then((result) => {
+//       .then(result => {
 //         console.log(result);
 //       })
-//       .catch((err) => {
+//       .catch(err => {
 //         console.log(err);
 //       });
 //   }
@@ -68,10 +67,11 @@ module.exports = mongoose.model('Product', productSchema);
 //       .collection('products')
 //       .find()
 //       .toArray()
-//       .then((products) => {
+//       .then(products => {
+//         console.log(products);
 //         return products;
 //       })
-//       .catch((err) => {
+//       .catch(err => {
 //         console.log(err);
 //       });
 //   }
@@ -82,10 +82,11 @@ module.exports = mongoose.model('Product', productSchema);
 //       .collection('products')
 //       .find({ _id: new mongodb.ObjectId(prodId) })
 //       .next()
-//       .then((product) => {
+//       .then(product => {
+//         console.log(product);
 //         return product;
 //       })
-//       .catch((err) => {
+//       .catch(err => {
 //         console.log(err);
 //       });
 //   }
@@ -95,10 +96,10 @@ module.exports = mongoose.model('Product', productSchema);
 //     return db
 //       .collection('products')
 //       .deleteOne({ _id: new mongodb.ObjectId(prodId) })
-//       .then((result) => {
-//         console.log('Item deleted ');
+//       .then(result => {
+//         console.log('Deleted');
 //       })
-//       .catch((err) => {
+//       .catch(err => {
 //         console.log(err);
 //       });
 //   }
