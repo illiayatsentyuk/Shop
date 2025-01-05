@@ -6,7 +6,11 @@ const crypto = require("crypto");
 
 const transporter = nodemailer.createTransport(
   sendgridTransport({
-
+    auth: {
+      api_name: "illia-node-shop",
+      api_key:
+        "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",
+    },
   })
 );
 
