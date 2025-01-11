@@ -119,5 +119,5 @@ mongoose
     app.listen(process.env.PORT || 3000);
   })
   .catch((err) => {
-    res.redirect("/500");
+    console.log(err)
   });
