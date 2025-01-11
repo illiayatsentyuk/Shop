@@ -1,7 +1,0 @@
-{
-    "env": {
-        "MONGO_DEFAULT_BASE":"shop",
-        "ITEMS_PER_PAGE":2,
-        "PORT":3001
-    }
-}

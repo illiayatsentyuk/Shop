@@ -175,7 +175,6 @@ exports.postRegister = (req, res, next) => {
 };
 exports.getReset = (req, res, next) => {
   let message = req.flash('error');
-  console.log(message);
   if (message.length > 0) {
     message = message[0];
   } else {
@@ -234,7 +233,6 @@ exports.getNewPassword = (req, res, next) => {
   })
     .then((user) => {
       let message = req.flash('error');
-      console.log(message);
       if (message.length > 0) {
         message = message[0];
       } else {
@@ -261,7 +259,6 @@ exports.postNewPassword = (req, res, next) => {
   const userId = req.body.userId;
   const passwordToken = req.body.passwordToken;
   let resetUser;
-  console.log(errors);
   User.findOne({
     resetToken: passwordToken,
     resetTokenExpiration: { $gt: Date.now() },

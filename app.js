@@ -17,9 +17,11 @@ const compression = require("compression");
 const morgan = require("morgan");
 const fs = require("fs");
 const https = require("https");
-const { uuidv4 } = require("uuid");
+const { v4: uuidv4 } = require("uuid");
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
-const MONGODB_URI = `mongodb+srv://grut2077:I562530y2009@node-course-shop.8ylfs.mongodb.net/${process.env.MONGO_DEFAULT_BASE}`;
+console.log(process.env.MONGO_USER);
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_USER_PASSWORD}@node-course-shop.8ylfs.mongodb.net/${process.env.MONGO_DEFAULT_BASE}`;
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, "access.log"),
   { flags: "a" }
@@ -107,7 +109,6 @@ app.use(authRoutes);
 app.get("/500", errorController.get500);
 app.use(errorController.get404);
 app.use((error, req, res, next) => {
-  console.log(error);
   res.redirect("/500");
 });
 
@@ -118,5 +119,5 @@ mongoose
     app.listen(process.env.PORT || 3000);
   })
   .catch((err) => {
-    console.log(err);
+    res.redirect("/500");
   });

@@ -70,25 +70,9 @@ exports.postAddProduct = (req, res, next) => {
   product
     .save()
     .then((result) => {
-      // console.log(result);
-      console.log("Created Product");
       res.redirect("/admin/products");
     })
     .catch((err) => {
-      // return res.status(500).render("admin/edit-product", {
-      //   pageTitle: "Add",
-      //   path: "/admin/add-product",
-      //   editing: false,
-      //   hasError: true,
-      //   product: {
-      //     title: title,
-      //     imageUrl: imageUrl,
-      //     price: price,
-      //     description: description,
-      //   },
-      //   errorMessage: "Database operation failed, please try again",
-      //   validationErrors: [],
-      // });
       console.log(err);
       const error = new Error(err);
       error.httpStatusCode = 500;
@@ -163,7 +147,6 @@ exports.postEditProduct = (req, res, next) => {
       }
 
       return product.save().then((result) => {
-        console.log("UPDATED PRODUCT!");
         res.redirect("/admin/products");
       });
     })
@@ -179,7 +162,6 @@ exports.postEditProduct = (req, res, next) => {
 exports.getProducts = (req, res, next) => {
   Product.find({ userId: req.user._id })
     .then((products) => {
-      console.log(products);
       res.render("admin/products", {
         prods: products,
         pageTitle: "Admin Products",
@@ -205,7 +187,6 @@ exports.deleteProduct = (req, res, next) => {
       return Product.deleteOne({ _id: prodId, userId: req.user._id });
     })
     .then(() => {
-      console.log("DESTROYED PRODUCT");
       res.status(200).json({ message: "Success!" });
     })
     .catch((err) => {
