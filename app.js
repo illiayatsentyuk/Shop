@@ -17,6 +17,7 @@ const compression = require("compression");
 const morgan = require("morgan");
 const fs = require("fs");
 const https = require("https");
+const { uuidv4 } = require("uuid");
 
 const MONGODB_URI = `mongodb+srv://grut2077:I562530y2009@node-course-shop.8ylfs.mongodb.net/${process.env.MONGO_DEFAULT_BASE}`;
 const accessLogStream = fs.createWriteStream(
@@ -28,18 +29,15 @@ const store = new MongoDBStore({
   collection: "sessions",
 });
 const csrfProtection = csrf();
-const privateKey = fs.readFileSync("server.key");
-const certificate = fs.readFileSync("server.cert");
+// const privateKey = fs.readFileSync("server.key");
+// const certificate = fs.readFileSync("server.cert");
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "images");
   },
   filename: (req, file, cb) => {
     console.log(file);
-    cb(
-      null,
-      new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
-    );
+    cb(null, uuidv4());
   },
 });
 
